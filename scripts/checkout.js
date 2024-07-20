@@ -2,6 +2,8 @@ import {cart} from '../data/cart.js';
 import { products} from '../data/products.js';
 
 let cartHTML = '';
+const orderSum = document.querySelector('.order-summary');
+
 cart.forEach((cartItem) => {
 
     let productId =  cartItem.productId;
@@ -24,18 +26,18 @@ cart.forEach((cartItem) => {
 
             <div class="cart-item-details-grid">
               <img class="product-image"
-                src="">
+                src="${matchingProduct.image}">
 
               <div class="cart-item-details">
                 <div class="product-name">
-                  Black and Gray Athletic Cotton Socks - 6 Pairs
+                  ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                  $10.90
+                  ${matchingProduct.priceCents / 100}
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">2</span>
+                    Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                   </span>
                   <span class="update-quantity-link link-primary">
                     Update
@@ -94,3 +96,5 @@ cart.forEach((cartItem) => {
           </div>
     `
 });
+
+orderSum.innerHTML = cartHTML;
