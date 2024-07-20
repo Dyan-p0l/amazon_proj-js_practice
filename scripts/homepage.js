@@ -78,19 +78,24 @@ const addToCart = (productId) => {
   }
 }
 
+const updateCartQuantity = () => {
+  let CartQuantity = 0;
+
+  cart.forEach((item) => {
+      CartQuantity += item.quantity;
+  }); 
+
+  document.querySelector('.cart-quantity').innerHTML = CartQuantity;
+}
+
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         const productId = button.dataset.productId;
         addToCart(productId);
-        
-        let CartQuantity = 0;
-        cart.forEach((item) => {
-            CartQuantity += item.quantity;
-        }); 
-
-        document.querySelector('.cart-quantity').innerHTML = CartQuantity;
+        updateCartQuantity();
     });
 });
+
 
 
 
