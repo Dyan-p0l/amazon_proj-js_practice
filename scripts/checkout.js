@@ -1,11 +1,15 @@
 import {cart, removeToCart} from '../data/cart.js';
 import { products} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
+import { dateFormat } from './utils/date.js';
 
 let cartHTML = '';
 const orderSum = document.querySelector('.order-summary');
 
-console.log(dayjs());
+const currDate = dayjs();
+const freeShipDate = currDate.add(7, 'days');
+const threeDayShipDate = currDate.add(3, 'days');
+console.log(dateFormat(currDate));
 
 cart.forEach((cartItem) => {
 
