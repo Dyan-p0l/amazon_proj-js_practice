@@ -2,6 +2,7 @@ import {cart, removeToCart} from '../data/cart.js';
 import { products} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 import { dateFormat } from './utils/date.js';
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 let cartHTML = '';
 const orderSum = document.querySelector('.order-summary');
@@ -9,7 +10,9 @@ const orderSum = document.querySelector('.order-summary');
 const currDate = dayjs();
 const freeShipDate = currDate.add(7, 'days');
 const threeDayShipDate = currDate.add(3, 'days');
-console.log(dateFormat(currDate));
+
+dateFormat(currDate);
+
 
 cart.forEach((cartItem) => {
 
