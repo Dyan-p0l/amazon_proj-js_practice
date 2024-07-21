@@ -25,3 +25,12 @@ export const addToCart = (productId) => {
     }
 
 };
+
+export const removeToCart = (productId) => {
+    cart.forEach((cartItem) => {
+    if (cartItem.productId === productId) {
+        cart.splice(cart.indexOf(cartItem), 1);
+    }
+    
+    });
+}
