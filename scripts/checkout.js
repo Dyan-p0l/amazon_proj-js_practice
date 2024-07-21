@@ -5,6 +5,8 @@ import { formatCurrency } from './utils/money.js';
 let cartHTML = '';
 const orderSum = document.querySelector('.order-summary');
 
+console.log(dayjs());
+
 cart.forEach((cartItem) => {
 
     let productId =  cartItem.productId;
