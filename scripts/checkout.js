@@ -99,11 +99,12 @@ cart.forEach((cartItem) => {
 
 orderSum.innerHTML = cartHTML;
 
-const deleteAll = document.querySelectorAll('.delete-all-link');
+const deleteAll = document.querySelectorAll('.delete-quantity-link');
 
 deleteAll.forEach((link) => {
-  link.addEventListener('click', () =>{
+  link.addEventListener('click', () => {
       const productId = link.dataset.productId;
       removeToCart(productId);
+      console.log(cart);
   });
 });
