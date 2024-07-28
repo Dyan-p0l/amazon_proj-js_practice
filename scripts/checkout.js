@@ -3,6 +3,7 @@ import { products} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 import { dateFormat } from './utils/date.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import {deliveryTime} from '../data/deliveryTime.js';
 
 let cartHTML = '';
 const orderSum = document.querySelector('.order-summary');
@@ -11,7 +12,6 @@ const currDate = dayjs();
 const freeShipDate = currDate.add(7, 'days');
 const threeDayShipDate = currDate.add(3, 'days');
 
-dateFormat(currDate);
 
 
 cart.forEach((cartItem) => {
@@ -108,6 +108,33 @@ cart.forEach((cartItem) => {
 orderSum.innerHTML = cartHTML;
 
 const deleteAll = document.querySelectorAll('.delete-quantity-link');
+
+const deliveryOptions = document.querySelectorAll('.delivery-options');
+
+function deliveryOption () {
+  deliveryOptions.forEach( () => {
+    const deliveryDate = currDate.add(deliveryTime.deliveryDays, 'day');
+    const dateString = dateFormat(deliveryDate);
+    const deliveryPrice = deliveryTime.priceCents; 
+
+    let deliveryHTML = '';
+    deliveryHTML += `
+        <div class="delivery-option">
+          <input type="radio" checked
+            class="delivery-option-input"
+            name="delivery-option-${matchingProduct.id}">
+          <div>
+            <div class="delivery-option-date">
+              ${dateString}
+            </div>
+            <div class="delivery-option-price">
+              ${formatCurrency(deliveryPrice)}
+            </div>
+          </div>
+        </div>
+    `;
+  });
+}
 
 
 deleteAll.forEach((link) => {

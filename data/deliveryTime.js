@@ -1,4 +1,4 @@
-const deliveryTime = [
+export const deliveryTime = [
 {
     id: 1,
     deliveryDays: 7,

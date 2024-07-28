@@ -1,3 +1,3 @@
 export const dateFormat = (date) => {
-    return date.format('dddd, MMMM');
+    return date.format('dddd, MMMM, D');
 }
