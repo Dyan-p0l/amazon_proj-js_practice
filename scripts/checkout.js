@@ -12,8 +12,6 @@ const currDate = dayjs();
 const freeShipDate = currDate.add(7, 'days');
 const threeDayShipDate = currDate.add(3, 'days');
 
-
-
 cart.forEach((cartItem) => {
 
     let productId =  cartItem.productId;
@@ -71,15 +69,15 @@ orderSum.innerHTML = cartHTML;
 
 const deleteAll = document.querySelectorAll('.delete-quantity-link');
 
-const deliveryOptions = document.querySelectorAll('.delivery-options');
-
 function deliveryOptionHTML (matchingProduct) {
-  deliveryOptions.forEach( () => {
-    const deliveryDate = currDate.add(deliveryTime.deliveryDays, 'day');
-    const dateString = dateFormat(deliveryDate);
-    const deliveryPrice = deliveryTime.priceCents === 0 ? 'FREE' : `$${deliveryTime.priceCents}`; 
 
-    let deliveryHTML = '';
+  let deliveryHTML = '';
+
+  deliveryTime.forEach( (deliveryOption) => {
+    const deliveryDate = currDate.add(deliveryOption.deliveryDays, 'day');
+    const dateString = dateFormat(deliveryDate);
+    const deliveryPrice = deliveryOption.priceCents === 0 ? 'FREE' : `$${deliveryOption.priceCents}`; 
+
     deliveryHTML += `
         <div class="delivery-option">
           <input type="radio" checked
@@ -96,7 +94,6 @@ function deliveryOptionHTML (matchingProduct) {
         </div>
     `;
   });
-
   return deliveryHTML;
 }
 
