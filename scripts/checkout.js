@@ -111,11 +111,11 @@ const deleteAll = document.querySelectorAll('.delete-quantity-link');
 
 const deliveryOptions = document.querySelectorAll('.delivery-options');
 
-function deliveryOption () {
+function deliveryOptionHTML () {
   deliveryOptions.forEach( () => {
     const deliveryDate = currDate.add(deliveryTime.deliveryDays, 'day');
     const dateString = dateFormat(deliveryDate);
-    const deliveryPrice = deliveryTime.priceCents; 
+    const deliveryPrice = deliveryTime.priceCents === 0 ? 'FREE' : `$${deliveryTime.priceCents}`; 
 
     let deliveryHTML = '';
     deliveryHTML += `
@@ -135,7 +135,6 @@ function deliveryOption () {
     `;
   });
 }
-
 
 deleteAll.forEach((link) => {
   link.addEventListener('click', () => {
