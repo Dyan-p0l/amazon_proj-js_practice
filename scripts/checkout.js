@@ -58,7 +58,7 @@ cart.forEach((cartItem) => {
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                ${deliveryOptionHTML(matchingProduct)}
+                ${deliveryOptionHTML(matchingProduct, cartItem)}
               </div>
             </div>
           </div>
@@ -69,7 +69,9 @@ orderSum.innerHTML = cartHTML;
 
 const deleteAll = document.querySelectorAll('.delete-quantity-link');
 
-function deliveryOptionHTML (matchingProduct) {
+
+
+function deliveryOptionHTML (matchingProduct, cartItem) {
 
   let deliveryHTML = '';
 
@@ -77,10 +79,10 @@ function deliveryOptionHTML (matchingProduct) {
     const deliveryDate = currDate.add(deliveryOption.deliveryDays, 'day');
     const dateString = dateFormat(deliveryDate);
     const deliveryPrice = deliveryOption.priceCents === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.priceCents)}`; 
-
+    const isChecked = deliveryOption.id === cartItem.deliveryTimeId;
     deliveryHTML += `
         <div class="delivery-option">
-          <input type="radio" checked
+          <input type="radio" ${isChecked ? 'checked': ''}
             class="delivery-option-input"
             name="delivery-option-${matchingProduct.id}">
           <div>
