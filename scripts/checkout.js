@@ -76,7 +76,7 @@ function deliveryOptionHTML (matchingProduct) {
   deliveryTime.forEach( (deliveryOption) => {
     const deliveryDate = currDate.add(deliveryOption.deliveryDays, 'day');
     const dateString = dateFormat(deliveryDate);
-    const deliveryPrice = deliveryOption.priceCents === 0 ? 'FREE' : `$${deliveryOption.priceCents}`; 
+    const deliveryPrice = deliveryOption.priceCents === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.priceCents)}`; 
 
     deliveryHTML += `
         <div class="delivery-option">
@@ -88,7 +88,7 @@ function deliveryOptionHTML (matchingProduct) {
               ${dateString}
             </div>
             <div class="delivery-option-price">
-              ${formatCurrency(deliveryPrice)}
+              ${deliveryPrice}
             </div>
           </div>
         </div>
