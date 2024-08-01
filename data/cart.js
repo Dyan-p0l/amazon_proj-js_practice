@@ -48,3 +48,18 @@ export const removeToCart = (productId) => {
 
     saveToLocal();
 }
+
+export function updateDeliveryTimeId (productId, deliveryTimeId) {
+
+    let matchingItem;
+
+    cart.forEach((cartItem) => {
+        if (productId === cartItem.productId) {
+            matchingItem = cartItem;
+        }
+    });
+
+    matchingItem.deliveryTimeId = deliveryTimeId;
+
+    saveToLocal();
+}
