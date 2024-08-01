@@ -9,8 +9,6 @@ let cartHTML = '';
 const orderSum = document.querySelector('.order-summary');
 
 const currDate = dayjs();
-const freeShipDate = currDate.add(7, 'days');
-const threeDayShipDate = currDate.add(3, 'days');
 
 cart.forEach((cartItem) => {
 
@@ -23,11 +21,23 @@ cart.forEach((cartItem) => {
         
     });
 
+    const deliveryTimeId = cartItem.deliveryTimeId;
+
+    let matchingDeliveryTimeId;
+
+    deliveryTime.forEach( (delivery) => {
+      if (delivery.id === deliveryTimeId) matchingDeliveryTimeId = delivery;
+
+    });
+
+    const deliveryDate = currDate.add(matchingDeliveryTimeId.deliveryDays, 'day');
+    const dateString = dateFormat(deliveryDate);
+
     cartHTML += 
     `
         <div class="cart-item-container js-cart-item-container-${matchingProduct.id}" >
             <div class="delivery-date">
-              Delivery date: Tuesday, June 21
+              Delivery date: ${dateString}
             </div>
 
             <div class="cart-item-details-grid">
