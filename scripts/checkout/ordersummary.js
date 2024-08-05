@@ -3,7 +3,7 @@ import { products, getProduct} from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import { dateFormat } from '../utils/date.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import {deliveryTime} from '../../data/deliveryTime.js';
+import {deliveryTime, getDeliveryTime} from '../../data/deliveryTime.js';
 
 
 export function renderOrderSummary() {
@@ -20,13 +20,9 @@ export function renderOrderSummary() {
 
       const deliveryTimeId = cartItem.deliveryTimeId;
 
-      let matchingDelivery;
+      let matchingDelivery = getDeliveryTime(deliveryTimeId);
 
-      deliveryTime.forEach( (delivery) => {
-        if (delivery.id === deliveryTimeId) {
-          matchingDelivery = delivery;
-        }
-      });
+      
 
       const deliveryDate = currDate.add(matchingDelivery.deliveryDays, 'day');
       const dateString = dateFormat(deliveryDate);

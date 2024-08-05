@@ -15,3 +15,15 @@ export const deliveryTime = [
         priceCents: 999
     }
 ];
+
+export function getDeliveryTime (deliveryTimeId) {
+    let matchingDelivery;
+
+    deliveryTime.forEach( (delivery) => {
+    if (delivery.id === deliveryTimeId) {
+        matchingDelivery = delivery;
+    }
+    });
+
+    return matchingDelivery || deliveryTime[0];
+}
