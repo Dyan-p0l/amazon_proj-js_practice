@@ -1,3 +1,6 @@
+import {cart, getTotalCartItems} from '../../data/cart.js';
+import { getProduct } from '../../data/products.js';
+
 export function renderPaymentSummary() {
 
     let paymentHTML = '';
@@ -11,7 +14,7 @@ export function renderPaymentSummary() {
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div>Items (${getTotalCartItems()}):</div>
             <div class="payment-summary-money">$42.75</div>
           </div>
 
@@ -42,4 +45,6 @@ export function renderPaymentSummary() {
 
 
     paymentSummary.innerHTML = paymentHTML;
+
+    console.log(getTotalCartItems());
 }

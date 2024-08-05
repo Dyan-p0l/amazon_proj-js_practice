@@ -63,3 +63,13 @@ export function updateDeliveryTimeId (productId, deliveryTimeId) {
 
     saveToLocal();
 }
+
+export function getTotalCartItems () {
+    let totalItems = 0;
+    cart.forEach((cartItem) => {
+        totalItems += cartItem.quantity;
+    });
+
+
+    return totalItems;
+}
