@@ -1,7 +1,12 @@
 import {cart, getTotalCartItems} from '../../data/cart.js';
-import { getProduct } from '../../data/products.js';
+import { getProduct} from '../../data/products.js';
 
 export function renderPaymentSummary() {
+    let productPrice;
+    cart.forEach((cartItem) => {
+        const product = getProduct(cartItem.productId);
+        productPrice = product.priceCents * cartItem.quantity;
+    }); 
 
     let paymentHTML = '';
 
