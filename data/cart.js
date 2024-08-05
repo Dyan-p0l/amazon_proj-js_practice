@@ -70,6 +70,5 @@ export function getTotalCartItems () {
         totalItems += cartItem.quantity;
     });
 
-
     return totalItems;
 }

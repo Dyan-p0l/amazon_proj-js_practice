@@ -1,13 +1,18 @@
 import {cart, getTotalCartItems} from '../../data/cart.js';
 import { getProduct} from '../../data/products.js';
+import {formatCurrency} from '../utils/money.js';
 
 export function renderPaymentSummary() {
-    let productPrice;
+    const shippingCharge = 499;
+
+    let productPrice = 0;
     cart.forEach((cartItem) => {
         const product = getProduct(cartItem.productId);
-        productPrice = product.priceCents * cartItem.quantity;
+        productPrice += product.priceCents * cartItem.quantity;
     }); 
 
+    const totalBeforeTax = productPrice + shippingCharge;
+    
     let paymentHTML = '';
 
     const paymentSummary = document.querySelector('.js-payment-summary');
@@ -20,7 +25,7 @@ export function renderPaymentSummary() {
 
           <div class="payment-summary-row">
             <div>Items (${getTotalCartItems()}):</div>
-            <div class="payment-summary-money">$42.75</div>
+            <div class="payment-summary-money">$${formatCurrency(productPrice)}</div>
           </div>
 
           <div class="payment-summary-row">
@@ -30,7 +35,7 @@ export function renderPaymentSummary() {
 
           <div class="payment-summary-row subtotal-row">
             <div>Total before tax:</div>
-            <div class="payment-summary-money">$47.74</div>
+            <div class="payment-summary-money">$${formatCurrency(totalBeforeTax)}</div>
           </div>
 
           <div class="payment-summary-row">
@@ -51,5 +56,5 @@ export function renderPaymentSummary() {
 
     paymentSummary.innerHTML = paymentHTML;
 
-    console.log(getTotalCartItems());
+    console.log(productPrice);
 }
