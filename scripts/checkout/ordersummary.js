@@ -4,7 +4,7 @@ import { formatCurrency } from '../utils/money.js';
 import { dateFormat } from '../utils/date.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryTime, getDeliveryTime} from '../../data/deliveryTime.js';
-
+import { renderPaymentSummary } from './paymentsummary.js';
 
 export function renderOrderSummary() {
   let cartHTML = '';
@@ -20,9 +20,7 @@ export function renderOrderSummary() {
 
       const deliveryTimeId = cartItem.deliveryTimeId;
 
-      let matchingDelivery = getDeliveryTime(deliveryTimeId);
-
-      
+      const matchingDelivery = getDeliveryTime(deliveryTimeId);
 
       const deliveryDate = currDate.add(matchingDelivery.deliveryDays, 'day');
       const dateString = dateFormat(deliveryDate);
@@ -73,8 +71,6 @@ export function renderOrderSummary() {
 
   const deleteAll = document.querySelectorAll('.delete-quantity-link');
 
-
-
   function deliveryOptionHTML (matchingProduct, cartItem) {
 
     let deliveryHTML = '';
@@ -117,6 +113,7 @@ export function renderOrderSummary() {
       const {productId, deliveryTimeId} = element.dataset;
       updateDeliveryTimeId(productId, deliveryTimeId);
       renderOrderSummary();
+      renderPaymentSummary();
     });
   })
 }
