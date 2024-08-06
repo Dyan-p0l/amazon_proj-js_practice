@@ -21,7 +21,7 @@ export function renderPaymentSummary() {
     let paymentHTML = '';
 
     const paymentSummary = document.querySelector('.js-payment-summary');
-    
+     
     paymentHTML += 
     `
         <div class="payment-summary-title">

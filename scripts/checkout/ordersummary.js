@@ -105,6 +105,7 @@ export function renderOrderSummary() {
         removeToCart(productId);
         const cartItem = document.querySelector(`.js-cart-item-container-${productId}`);
         cartItem.remove();
+        renderPaymentSummary();
     });
   });
 
