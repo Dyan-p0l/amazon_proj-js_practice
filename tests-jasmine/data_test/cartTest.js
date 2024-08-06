@@ -1,4 +1,4 @@
-import {addToCart, cart} from "../../data/cart.js";
+import {addToCart, cart, loadFromStorage} from "../../data/cart.js";
 
 describe('test suite: addToCart', () => {
     it('adds existing product in the cart', () => {
@@ -8,7 +8,8 @@ describe('test suite: addToCart', () => {
     it('adds a new product in the cart', () => {
         spyOn(localStorage, 'getItem').and.callFake(() => {
             return JSON.stringify([]);
-        }); 
+        });
+        loadFromStorage(); 
 
         console.log(localStorage.getItem('cart'));
 
