@@ -6,9 +6,10 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryTime, getDeliveryTime} from '../../data/deliveryTime.js';
 import { renderPaymentSummary } from './paymentsummary.js';
 
+
 export function renderOrderSummary() {
   let cartHTML = '';
-  const orderSum = document.querySelector('.order-summary');
+  const orderSum = document.querySelector('.js-order-summary');
 
   const currDate = dayjs();
 
@@ -27,7 +28,7 @@ export function renderOrderSummary() {
 
       cartHTML += 
       `
-          <div class="cart-item-container js-cart-item-container-${matchingProduct.id}" >
+          <div class="cart-item-container js-cart-item-container js-cart-item-container-${matchingProduct.id}" >
               <div class="delivery-date">
                 Delivery date: ${dateString}
               </div>
@@ -68,6 +69,7 @@ export function renderOrderSummary() {
   });
 
   orderSum.innerHTML = cartHTML;
+  console.log(orderSum);
 
   const deleteAll = document.querySelectorAll('.delete-quantity-link');
 
@@ -118,5 +120,3 @@ export function renderOrderSummary() {
     });
   })
 }
-
-renderOrderSummary();

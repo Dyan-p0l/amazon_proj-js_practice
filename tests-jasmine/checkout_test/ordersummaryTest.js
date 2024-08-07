@@ -1,13 +1,9 @@
-import { loadFromStorage } from "../../data/cart.js";
+import { cart, loadFromStorage } from "../../data/cart.js";
 import { renderOrderSummary } from "../../scripts/checkout/ordersummary.js";
 
 describe('test suite: renderOrderSummary', () => {
     it('displays the cart', () => {
-        
-        document.querySelector('.js-test-container').innerHTML = 
-        `
-            <div class="order-summary"></div>
-        `;
+        document.querySelector('.js-test-container').innerHTML = `<div class="js-order-summary"></div>`;
 
         spyOn(localStorage, 'getItem').and.callFake(() => {
             return JSON.stringify([
@@ -24,9 +20,13 @@ describe('test suite: renderOrderSummary', () => {
             ]);
         });
 
-        loadFromStorage();
+        console.log(cart);
 
+        loadFromStorage();
+        
         renderOrderSummary();
+
+        expect(document.querySelectorAll('.js-cart-item-container').length).toEqual(2);
 
     });
 });
