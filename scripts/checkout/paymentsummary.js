@@ -14,7 +14,6 @@ export function renderPaymentSummary() {
         shippingPriceCents += deliveryTime.priceCents;
     }); 
 
-    console.log(`Total shipping Price: ${shippingPriceCents}`);
     const totalBeforeTax = productPrice + shippingPriceCents;
     const taxCharge = productPrice * 0.1;
     const orderTotal = totalBeforeTax + taxCharge;
@@ -61,5 +60,4 @@ export function renderPaymentSummary() {
 
     paymentSummary.innerHTML = paymentHTML;
 
-    console.log(productPrice);
 }

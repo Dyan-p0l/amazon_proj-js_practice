@@ -69,8 +69,7 @@ export function renderOrderSummary() {
   });
 
   orderSum.innerHTML = cartHTML;
-  console.log(orderSum);
-
+  
   const deleteAll = document.querySelectorAll('.delete-quantity-link');
 
   function deliveryOptionHTML (matchingProduct, cartItem) {

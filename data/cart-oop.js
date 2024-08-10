@@ -1,9 +1,9 @@
 export const cart = {
     cartItems: undefined,
     loadFromStorage:  () => {
-        this.cartItems = JSON.parse(localStorage.getItem('cart-oop'));
-        if (!this.cartItems) {
-            this.cartItems = [
+        cart.cartItems = JSON.parse(localStorage.getItem('cart-oop'));
+        if (!cart.cartItems) {
+            cart.cartItems = [
                 {
                     productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
                     quantity: 1,
@@ -69,4 +69,4 @@ export const cart = {
  
 };
 
-loadFromStorage();
+cart.loadFromStorage();
